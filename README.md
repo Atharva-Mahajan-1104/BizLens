@@ -1,6 +1,6 @@
 # 🚀 BizLens — Turn Bills into Business Brilliance
 
-![BizLens Banner](https://your-image-link.com/banner.svg)
+![BizLens Banner](new-bizlens-project/assets/bizlens.png)
 
 > *“Where data meets design, and insights power action.”*
 
