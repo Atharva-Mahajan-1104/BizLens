@@ -28,7 +28,6 @@
 |-----------|----------------------------------------|
 | Frontend  | React · TypeScript · Vite · Bootstrap  |
 | Backend   | Spring Boot · MySQL · JWT Auth         |
-| DevOps    | GitHub · Netlify (Frontend) · Render (Backend) |
 | Tools     | Axios · Postman · IntelliJ · VS Code   |
 
 ---
