@@ -10,86 +10,98 @@
 
 ## 🧠 Why BizLens?
 
-📌 Manual bill tracking is inefficient.  
-📌 Business intelligence tools are often complex and expensive.  
-📌 Owners need **clarity**, not chaos.
+✅ Manual bill tracking is inefficient  
+✅ Traditional BI tools are complex and pricey  
+✅ Business owners need **clarity**, not chaos  
 
-**BizLens solves this.** Upload a bill → Get charts, categories, and insights → Make smarter business decisions.  
+**BizLens solves this:**
+
+➡️ Upload a bill  
+➡️ Instantly view categorized insights  
+➡️ Make smarter decisions backed by data
 
 ---
 
 ## 🧱 Tech Stack Overview
 
-| Layer     | Technology                         |
-|-----------|------------------------------------|
-| Frontend  | React + TypeScript + Vite + Bootstrap |
-| Backend   | Spring Boot + MySQL + JWT Auth     |
-| DevOps    | GitHub + Netlify (Frontend) + Render (Backend) |
-| Tools     | Axios, Postman, IntelliJ, VS Code  |
+| Layer     | Technology                             |
+|-----------|----------------------------------------|
+| Frontend  | React · TypeScript · Vite · Bootstrap  |
+| Backend   | Spring Boot · MySQL · JWT Auth         |
+| DevOps    | GitHub · Netlify (Frontend) · Render (Backend) |
+| Tools     | Axios · Postman · IntelliJ · VS Code   |
 
 ---
 
 ## 🖥️ Frontend Highlights
 
-✨ Built with modern React and TypeScript  
-✨ Beautiful Bootstrap UI with micro-animations  
-✨ Real-time feedback and form validation  
-✨ Secure JWT Authentication  
-✨ Insightful charts and dashboards  
-✨ Optimized for desktop + mobile  
+- ⚛️ Built with modern **React + TypeScript**
+- 🎨 Sleek **Bootstrap** UI with custom theming
+- 📱 Responsive design for **mobile + desktop**
+- ✅ Form validation + real-time feedback
+- 🔐 Secure login with **JWT**
+- 📊 Interactive dashboards powered by real data
 
+---
 
 ## ⚙️ Backend Highlights
-🔐 Layered architecture (Controller → Service → Repository)
-🛡️ JWT-based authentication
-🗃️ MySQL Database integration
-📄 Clean DTO structure for requests/responses
-🚀 Fast REST APIs for full CRUD + analytics
 
-## 📸 Sneak Peek
-Feature	Preview
-✍️ Login/Register	Simple auth UI with validation
-📈 Dashboard	Dynamic charts from bill data
-📤 Upload Bill	Clean file upload component
-🧾 Bill Viewer	Organized data display with insights
+- 🧩 Clean layered structure (Controller → Service → Repository)
+- 🔐 Secure endpoints using **JWT authentication**
+- 🗃️ Integrated with **MySQL** for reliable data storage
+- ✉️ DTO-based communication for cleaner APIs
+- 📊 Analytics-driven endpoints for reporting
 
+---
 
+## 📸 Sneak Peek of Features
 
-## 🧠 Core Features
-🔐 Secure user login with JWT
+| Feature         | Preview Description                            |
+|-----------------|-------------------------------------------------|
+| ✍️ Login/Register | Secure, form-validated auth screens             |
+| 📈 Dashboard      | Charts that summarize spending patterns         |
+| 📤 Upload Bill    | Upload bills in PDF/text and extract data       |
+| 🧾 Bill Viewer    | Neatly structured table with categorized info   |
 
-📤 Upload and process bill data
+---
 
-📊 Auto-categorized analytics
+## 🔍 Core Features
 
-📅 Daily/Monthly/Yearly filters
+- 🔐 Secure user authentication (JWT)
+- 📤 Upload and process bill data
+- 📊 Auto-categorized analytics dashboard
+- 🗓️ Filter data by day/month/year
+- 🔎 Drill-down into individual expense types
+- 📑 Export-ready views for future email/PDF reports
 
-🔎 Deep dive into expense types
+---
 
-📨 Future export as PDF/email
+## 🔮 Planned Enhancements
 
+- 🖼️ OCR support for **image-based bill scanning**
+- 🧠 AI-powered **smart expense categorization**
+- 📧 Auto-generated **PDF reports via email**
+- 📅 Forecasting and budget reminders
+- 👥 Role-based access control for teams
 
-
-## 🧩 Future Enhancements
-🖼️ OCR support for image-based bills
-
-🧠 AI-powered smart budgeting
-
-📧 Email + PDF reports
-
-📅 Expense forecasting and reminders
-
-🔑 Role-based access system
-
-
+---
 
 ## 🤝 Contribution Guide
-🍴 Fork the project
 
-📁 Create a feature branch
+I welcome contributions! Here’s how you can get involved:
 
-💬 Commit descriptive messages
+1. 🍴 Fork the project  
+2. 📁 Create a feature branch (`git checkout -b feature-name`)  
+3. 💬 Commit descriptive messages  
+4. 📤 Push and open a PR  
 
-📤 Push and open a PR
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
 
 
