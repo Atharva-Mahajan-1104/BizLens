@@ -1,19 +1,24 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Search, Filter } from 'lucide-react';
-import { Bar, Pie, Doughnut, Line } from 'react-chartjs-2';
+import { Bar, Pie, Doughnut } from 'react-chartjs-2';
 import 'chart.js/auto';
 
+// ---------------- Type Definitions ----------------
+
+// Structure for item-level sales data
 interface ItemData {
   item: string;
   quantity: number;
 }
 
+// Structure for customer-level spending data
 interface CustomerData {
   customer: string;
   totalSpent: number;
 }
 
+// Structure for full report payload returned from backend
 interface ReportData {
   mostSoldItems: ItemData[];
   leastSoldItems: ItemData[];
@@ -21,9 +26,17 @@ interface ReportData {
   totalRevenue: number;
 }
 
+// ---------------- Reports Component ----------------
+
 const Reports = () => {
+
+  // State for search input
   const [searchTerm, setSearchTerm] = useState('');
+
+  // State for dropdown filter selection
   const [filterType, setFilterType] = useState('all');
+
+  // State to store fetched report analytics data
   const [reportData, setReportData] = useState<ReportData>({
     mostSoldItems: [],
     leastSoldItems: [],
@@ -31,6 +44,7 @@ const Reports = () => {
     totalRevenue: 0,
   });
 
+  // Fetch analytics insights when component mounts
   useEffect(() => {
     fetch('http://localhost:8080/api/file-analysis/insights', {
       method: 'POST',
@@ -38,25 +52,36 @@ const Reports = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        fileId: 12, // Replace with actual file ID
-        filePath: 'D:\\BizLens-Backend\\uploads\\excel_files\\Book1.xlsx', // Replace with actual file path
+        fileId: 12, // Placeholder file ID (replace with dynamic value)
+        filePath: 'D:\\BizLens-Backend\\uploads\\excel_files\\Book1.xlsx', // Placeholder path
       }),
     })
       .then((response) => response.json())
       .then((data: ReportData) => {
+        // Store backend response in state
         setReportData(data);
       })
       .catch((error) => {
+        // Log errors if API request fails
         console.error('Error fetching report data:', error);
       });
   }, []);
 
+  // Filter customer reports based on search term and selected filter
   const filteredReports = reportData.topCustomers.filter((customer) => {
-    const matchesSearch = customer.customer.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = customer.customer
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+
+    // Placeholder for future filter logic
     const matchesFilter = filterType === 'all';
+
     return matchesSearch && matchesFilter;
   });
 
+  // ---------------- Chart Configurations ----------------
+
+  // Bar chart for most sold items
   const mostSoldItemsChart = {
     labels: reportData.mostSoldItems.map((item) => item.item),
     datasets: [
@@ -70,6 +95,7 @@ const Reports = () => {
     ],
   };
 
+  // Bar chart for least sold items
   const leastSoldItemsChart = {
     labels: reportData.leastSoldItems.map((item) => item.item),
     datasets: [
@@ -83,6 +109,7 @@ const Reports = () => {
     ],
   };
 
+  // Pie chart for top customers by spending
   const topCustomersChart = {
     labels: reportData.topCustomers.map((customer) => customer.customer),
     datasets: [
@@ -96,6 +123,7 @@ const Reports = () => {
     ],
   };
 
+  // Doughnut chart for total revenue overview
   const totalRevenueChart = {
     labels: ['Total Revenue'],
     datasets: [
@@ -109,16 +137,35 @@ const Reports = () => {
     ],
   };
 
+  // ---------------- UI Rendering ----------------
+
   return (
     <div className="pt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900">Analysis Reports</h1>
-          <p className="mt-4 text-xl text-gray-600">View and analyze your reports</p>
+
+        {/* Page heading */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-center mb-12"
+        >
+          <h1 className="text-4xl font-bold text-gray-900">
+            Analysis Reports
+          </h1>
+          <p className="mt-4 text-xl text-gray-600">
+            View and analyze your reports
+          </p>
         </motion.div>
 
-        <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="bg-white rounded-lg shadow-lg p-6 mb-8">
+        {/* Search and filter panel */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          className="bg-white rounded-lg shadow-lg p-6 mb-8"
+        >
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
+            {/* Search input */}
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <input
@@ -130,6 +177,7 @@ const Reports = () => {
               />
             </div>
 
+            {/* Filter dropdown */}
             <div className="flex items-center gap-4">
               <Filter className="text-gray-400 h-5 w-5" />
               <select
@@ -146,52 +194,77 @@ const Reports = () => {
           </div>
         </motion.div>
 
+        {/* Reports table */}
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="min-w-full divide-y divide-gray-200">
+
+            {/* Table header */}
             <div className="bg-gray-50">
               <div className="grid grid-cols-3 gap-4 px-6 py-3">
-                <div className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</div>
-                <div className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Spent</div>
-                <div className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</div>
+                <div className="text-xs font-medium text-gray-500 uppercase">Customer</div>
+                <div className="text-xs font-medium text-gray-500 uppercase">Total Spent</div>
+                <div className="text-xs font-medium text-gray-500 uppercase">Type</div>
               </div>
             </div>
+
+            {/* Table rows */}
             <div className="bg-white divide-y divide-gray-200">
               {filteredReports.map((report) => (
-                <motion.div key={report.customer} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="grid grid-cols-3 gap-4 px-6 py-4 hover:bg-gray-50">
-                  <div className="text-sm font-medium text-gray-900">{report.customer}</div>
-                  <div className="text-sm text-gray-500">{report.totalSpent}</div>
-                  <div className="text-sm text-gray-500">{'Customer'}</div>
+                <motion.div
+                  key={report.customer}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="grid grid-cols-3 gap-4 px-6 py-4 hover:bg-gray-50"
+                >
+                  <div className="text-sm font-medium text-gray-900">
+                    {report.customer}
+                  </div>
+                  <div className="text-sm text-gray-500">
+                    {report.totalSpent}
+                  </div>
+                  <div className="text-sm text-gray-500">
+                    Customer
+                  </div>
                 </motion.div>
               ))}
             </div>
           </div>
         </div>
 
+        {/* Charts Section */}
         <div className="mt-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Most Sold Items</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            Most Sold Items
+          </h2>
           <div className="w-full md:w-1/2 mx-auto">
-            <Bar data={mostSoldItemsChart} options={{ responsive: true, maintainAspectRatio: false }} />
+            <Bar data={mostSoldItemsChart} />
           </div>
         </div>
 
         <div className="mt-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Least Sold Items</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            Least Sold Items
+          </h2>
           <div className="w-full md:w-1/2 mx-auto">
-            <Bar data={leastSoldItemsChart} options={{ responsive: true, maintainAspectRatio: false }} />
+            <Bar data={leastSoldItemsChart} />
           </div>
         </div>
 
         <div className="mt-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Top Customers</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            Top Customers
+          </h2>
           <div className="w-full md:w-1/2 mx-auto">
-            <Pie data={topCustomersChart} options={{ responsive: true, maintainAspectRatio: false }} />
+            <Pie data={topCustomersChart} />
           </div>
         </div>
 
         <div className="mt-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Total Revenue</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            Total Revenue
+          </h2>
           <div className="w-full md:w-1/2 mx-auto">
-            <Doughnut data={totalRevenueChart} options={{ responsive: true, maintainAspectRatio: false }} />
+            <Doughnut data={totalRevenueChart} />
           </div>
         </div>
       </div>
